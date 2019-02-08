@@ -8,6 +8,8 @@ html {
   display: none;
 }
 
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500);
+
 body {
   margin: 60px;
   position: absolute;
@@ -240,4 +242,237 @@ sup {
   width: 100%;
   border-spacing: 0;
   border-collapse: separate;
+}
+.osm.control.top_right {
+  top: -75;
+  right: 75;
+}
+
+.osm.control.top_left {
+  top: -75;
+  left: -75;
+}
+
+.osm.control.bottom_right {
+  bottom: 75;
+  right: 75;
+}
+
+.osm.control.bottom_left {
+  bottom: -75;
+  left: -75;
+}
+
+/* Menu Button */
+.osm.control {
+  position: fixed;
+  width: 150px;
+  height: 150px;
+  z-index: 55;
+  border: 1px solid blue;
+}
+
+/* Show button when you hover near */
+.osm.control:hover .container {
+  opacity: 0.2;
+  cursor: pointer !important;
+}
+
+.osm.control:hover {
+  cursor: pointer !important;
+}
+
+/*Increase brightness when directly over*/
+.osm.control .container:hover {
+  opacity: 0.5;
+}
+
+.container {
+  text-align: center;
+  position: fixed;
+  cursor: pointer !important;
+  margin: 1em;
+  /*opacity: 0.0;*/
+}
+
+[class*="_left"] .container { left: 0; }
+[class*="_right"] .container { right: 0; }
+[class*="top_"] .container { top: 0; }
+[class*="bottom_"] .container { bottom: 0; }
+
+.buttons {
+  box-shadow: 0px 5px 11px -2px rgba(255, 255, 255, 0.18),
+    0px 4px 12px -7px rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+/*   background-color: #222; */
+  background-color: #fff;
+  color: #333;
+  display: block;
+  position: relative;
+  -webkit-transition: all .1s ease-out;
+  transition: all .1s ease-out;
+}
+
+.buttons.menu {
+  opacity: 0;
+  width: 56px;
+  height: 56px;
+  margin: 20px auto 0;
+  -webkit-transition: all .25s ease-out;
+  transition: all .25s ease-out;
+    -webkit-transition-delay: 500ms;
+            transition-delay: 500ms;
+}
+
+.touchMode .buttons.menu {
+  opacity: 0.8;
+}
+
+.container:hover .buttons.menu,
+.openMenu .buttons.menu {
+  opacity: 0.8;
+      -webkit-transition-delay: 0ms;
+            transition-delay: 0ms;
+}
+
+.buttons i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 85%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.buttons.item i {
+  font-size: 65%;
+}
+
+.container .buttons.menu .opened {
+  opacity: 0 !important; 
+  -webkit-transition: all .1s ease-out;
+  transition: all .1s ease-out;
+  -webkit-transition-delay: 0ms;
+          transition-delay: 0ms;
+}
+
+.openMenu .buttons.menu .closed,
+.container:hover .buttons.menu .closed {
+  opacity: 0 !important; 
+  -webkit-transition: all .1s ease-out;
+  transition: all .1s ease-out;
+    -webkit-transition-delay: 500ms;
+            transition-delay: 500ms;
+}
+
+.container:hover .buttons.menu .opened,
+.openMenu .buttons.menu .opened {
+  opacity: 1 !important; 
+  -webkit-transition: all .25s ease-in;
+  transition: all .25s ease-in;
+    -webkit-transition-delay: 600ms;
+            transition-delay: 600ms;
+}
+
+.buttons:active, .buttons:focus, .buttons:hover, .buttons.selected {
+  box-shadow: 0 0 4px rgba(255, 255, 255, .42),
+    0 4px 8px rgba(255, 255, 255, .66);
+}
+
+[class*="bottom_"] .buttons.item {
+  width: 40px;
+  height: 40px;
+  margin: 20px auto 0;
+  opacity: 0;
+  -webkit-transform: translateY(50px);
+  -ms-transform: translateY(50px);
+  transform: translateY(50px);
+  -webkit-transition-delay: 500ms;
+          transition-delay: 500ms;
+}
+
+[class*="top_"] .buttons.item {
+  width: 40px;
+  height: 40px;
+  margin: 20px auto 0;
+  opacity: 0;
+  -webkit-transform: translateY(-50px);
+      -ms-transform: translateY(-50px);
+          transform: translateY(-50px);
+  -webkit-transition-delay: 500ms;
+          transition-delay: 500ms;
+}
+
+.container:hover .buttons.item,
+.openMenu .buttons.item {
+  opacity: 0.8;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+    -webkit-transition-delay: 0ms;
+            transition-delay: 0ms;
+  margin: 15px auto 0;
+}
+
+/* Show tooltip content on hover */
+.touchMode .buttons[tooltip]:before, 
+.touchMode .buttons[tooltip]:after {
+  visibility: visible !important;
+  opacity: 0.6 !important;
+}
+
+.buttons.item[tooltip]:hover:before,
+.buttons.item[tooltip]:hover:after,
+.buttons.selected[tooltip]:before, 
+.buttons.selected[tooltip]:after {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.buttons.item[tooltip]:before {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border-radius: 2px;
+  background: #585858;
+  color: #fff;
+  content: attr(tooltip);
+  visibility: hidden;
+  opacity: 0;
+  padding: 0.7em 1em;
+  margin-right: 1em;
+  margin-left: 1em;
+  position: absolute;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 0.5em;
+  line-height: .7em;
+}
+
+[class*="_left"] .buttons.item[tooltip]:before {
+  left: 100%;
+}
+
+[class*="_right"] .buttons.item[tooltip]:before {
+  right: 100%;
+}
+
+.toggle i {
+  display: inline-block;
+  left: 50%;
+  top: 50%;
+  font-size: 85%;
+}
+
+.toggle {
+  text-align: center;
+  vertical-align: middle;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: auto;
+  cursor: pointer !important;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }

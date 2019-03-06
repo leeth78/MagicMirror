@@ -1,0 +1,53 @@
+라즈베리파이 vnc 사용\
+
+sudo apt-get install rpi-update : 펌업
+
+1.1 네비게이션 슬라이더 https://github.com/shbatm/MMM-Carousel
+1.2 네비게이션 페이지 선택 https://github.com/Veldrovive/MMM-Page-Selector
+1.3 네비게이션 페이지 표시기 https://github.com/edward-shen/MMM-page-indicator
+
+2.1 인터넷 연결상태 https://github.com/slametps/MMM-NetworkConnection
+2.2 인터넷 연결상태 https://github.com/sheyabernstein/MMM-connection-status
+
+3.1 - 환율표시 https://github.com/mykle1/MMM-LICE
+
+4.1 - 임의의 위키백과 https://github.com/mihairinzis/MMM-wiki
+
+5.1 - 보이스 커멘더 https://github.com/Veldrovive/MMM-Voice-Commands
+5.2 - MMM 음성 https://github.com/fewieden/MMM-voice
+5.3 - 보이스 컨트롤 https://github.com/alexyak/voicecontrol
+
+6.1 - 날씨정보 https://github.com/cowboysdude/MMM-NOAA3
+6.2 - 날씨정보 https://github.com/nigel-daniels/MMM-3Day-Forecast
+6.3 - gps위치 날씨 https://github.com/mochman/MMM-GPSWeather
+
+7.1 - 온도.습도 https://github.com/BenRoe/MMM-FHEM
+7.2 - 온도/습도 https://github.com/bernardpletikosa/MMM-DHT-Sensor
+7.3 - 온도/습도 https://github.com/nebulx29/MMM-dht22
+7.4 - 센서값읽기 https://github.com/aserramonner/MMM-HASS
+
+8.1 - 알람시계 https://github.com/fewieden/MMM-AlarmClock
+8.2 - 이벤트 알람 https://github.com/eouia/MMM-DailyAlarm
+8.3 - 구글일정 https://github.com/jclarke0000/MMM-MyCalendar
+8.4 - 일정보기 https://github.com/eouia/MMM-CalendarExt
+
+9.1 - MMM 버튼 https://github.com/Jopyth/MMM-Buttons
+9.2 - MMM 버튼 https://github.com/PatriceG/MMM-MPR121
+
+9.0 - pi camera 제스쳐 https://github.com/Shinao/SmartMirror
+9.1 - 3D 제스쳐 감지 https://github.com/eouia/MMM-GroveGestures
+9.0 - 카메라 제스쳐 감지 https://github.com/CLiu13/GestureOS
+제스쳐 https://github.com/Seeed-Studio/Gesture_PAJ7620
+9.0 - 제스쳐 센서 https://github.com/DexterInd/GrovePi/tree/master/Software/Python/grove_gesture_sensor
+9.2 - 홈제어 온도/램프표시 https://github.com/marcelwinh/MMM-PimaticFloorplan
+9.3 - 홈제어 온도/램프표시 https://github.com/paphko/mmm-openhabfloorplan
+9.4 - 센서감지 잠자기 https://github.com/paviro/MMM-PIR-Sensor
+9.5 - cctv보안 https://github.com/shbatm/MMM-RTSPStream
+9.6 - 시스템 통계 https://github.com/mykle1/MMM-PC-Stats
+9.7 - 제스쳐센서 사용고가?? Setup Flick https://github.com/PiSupply/Flick
+
+10.1 - 구글 드라이브 연동 https://github.com/mitchelltmarino/MMM-RemoteCompliments
+
+11.1 - 카메라기반 모션감지 https://github.com/alexyak/motiondetector
+11.2 - 네트워크상 램프? https://github.com/slametps/MMM-Yeelight
+11.3 - 온도조절 모듈 https://github.com/overflOw11/MMM-Netatmo-Thermostat

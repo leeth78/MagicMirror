@@ -1,0 +1,307 @@
+﻿---- 라즈베리파이 설치 및 설정
+SD카드에 라즈비안 이미지 설치
+루퍼스 : http://rufus.akeo.ie/
+라즈베리 파이 재단 : https://www.raspberrypi.org
+
+재부팅 후 인터넷/언어 설정
+
+---- 한글 폰트(글꼴)과 이모지 설치
+$: = 터미널 실행후
+	sudo apt-get --yes install fonts-nanum fonts-symbola
+	[엔터]
+	sudo apt-get install ttf-unfonts-core
+	[엔터]
+
+다음은 ibus를 설치합니다.
+	sudo apt-get install ibus-hangul
+
+---- 마이크 스피커 설정
+
+메뉴>보조 프로그램>텍스트 에디터 실행
+pcm.!default{
+  type asym
+  playback.pcm{
+    type hw
+    card 0
+  }
+  capture.pcm{
+    type plug
+    slave.pcm "hw:1, 0"
+  }
+}
+ctl.!default{
+  type hw
+  card 0
+}
+---------------------------------------------
+
+pcm.!default{
+    type asym
+    capture.pcm "mic"
+    playback.pcm "speaker"
+    }
+pcm.mic{
+    type plug
+    slave{
+        pcm "hw:1,0"
+        }
+    }
+pcm.speaker{
+    type plug
+    slave{
+        pcm "hw:1,0"
+        }
+    } 
+입력 한 후에 저장
+위치는 /home/pi/
+파일명은    .asoundrc
+
+
+---- 재부팅
+
+
+화면 상단 오른쪽의 스피커 아이콘을 우클릭하여 나온 메뉴에서 Analog 선택
+
+
+---- MagicMirror설치
+터미널 실행후
+	bash -c "$(curl -sL https://raw.githubusercontent.com/MichMich/MagicMirror/master/installers/raspberry.sh)"
+	[엔터]
+
+설치 마지막에 물어보는
+Do you want use pm2 for auto starting of your MagicMirror (y/N)
+에서 [N] [엔터]
+
+
+MaigcMirror 테스트
+
+	cd ~/MagicMirror/ 
+	[엔터]
+	npm start
+	[엔터]
+
+
+MagicMirror가 잘 실행되는지 확인후
+$: 	[Ctrl+Q]로 종료
+
+
+*** 실행이 안될경우
+
+$: rm -rf ~/MagicMirror/
+[엔터]
+설치한 MagicMirror를 삭제한 후 설치과정을 처음부터 다시
+
+---- 구글어시스턴트 모듈설치
+사용모듈:MMM-GoogleAssistant, MMM-Hotword, MMM-NotificationTrigger, MMM-AssistantMk2
+(제작자: Seongnoh Sean Yi)  https://github.com/eouia
+---- 관련 프로그램 설치
+	sudo apt-get --yes install libmagic-dev libatlas-base-dev sox libsox-fmt-all libasound2-dev
+	[엔터]
+
+
+---- 터미널에서 모듈 다운로드
+
+	cd ~/MagicMirror/modules/
+	[엔터]
+######### git clone https://github.com/gauravsacc/MMM-GoogleAssistant -나중에 다시 추가확인
+	[엔터]
+######### git clone https://github.com/Jopyth/MMM-Buttons -나중에 다시 추가확인
+	[엔터]
+######### git clone https://github.com/dmcinnes/MMM-Motion-Detection -나중에 다시 추가확인
+	[엔터]
+######### git clone https://github.com/roramirez/MMM-ImagesPhotos -나중에 다시 추가확인
+	[엔터]
+	git clone https://github.com/eouia/MMM-Hotword.git
+	[엔터]
+	git clone https://github.com/eouia/MMM-NotificationTrigger.git
+	[엔터]
+	git clone https://github.com/eouia/MMM-AssistantMk2.git
+	[엔터]
+
+---- 모듈설치 MMM-Hotword설치 
+	cd ~/MagicMirror/modules/MMM-Hotword/
+	[엔터]
+	npm install
+	[엔터]
+
+
+---- 설치가 끝나고
+	cd ~/MagicMirror/modules/MMM-Hotword/node_modules/snowboy/
+	[엔터]
+	npm install --save-dev electron-rebuild
+	[엔터]
+	npm install nan
+	[엔터]
+	./node_modules/.bin/electron-rebuild
+	[엔터]
+
+pi@raspberrypi:~/MagicMirror/modules $ rm -rf MMM-AssistantMk2/
+pi@raspberrypi:~/MagicMirror/modules $ git clone https://github.com/eouia/pi@raspberrypi:~/MagicMirror/modules $ cd MMM-AssistantMk2
+pi@raspberrypi:~/MagicMirror/modules/MMM-AssistantMk2 $ npm install
+pi@raspberrypi:~/MagicMirror/modules/MMM-AssistantMk2 $ cd node_modules
+pi@raspberrypi:~/MagicMirror/modules/MMM-AssistantMk2/node_modules $ rm -rf grpc
+pi@raspberrypi:~/MagicMirror/modules/MMM-AssistantMk2/node_modules $ cd ..
+pi@raspberrypi:~/MagicMirror/modules/MMM-AssistantMk2 $ npm install @grpc/grpc-js
+pi@raspberrypi:~/MagicMirror/modules/MMM-AssistantMk2 $ npm install --save-dev electron-rebuild
+pi@raspberrypi:~/MagicMirror/modules/MMM-AssistantMk2 $ ./node_modules/.bin/electron-rebuild
+
+
+---- MMM-AssistantMk2설치
+	터미널에서
+	cd ~/MagicMirror/modules/MMM-AssistantMk2/
+	[엔터]
+	npm install
+	[엔터]
+
+---- 구글API설정
+https://console.actions.google.com/
+에 접속하여 구글 아이디로 로그인
+프로젝트 생성
+프로젝트 이름 자유롭게
+언어와 국가는 한국으로
+
+
+https://console.cloud.google.com/
+에 접속하여 상단 프로젝트 선택에서 방금 만든 프로젝트 선택
+상단 검색에 Google Assistant API검색하여 해당 페이지의 "사용 설정" 클릭
+그후 왼쪽 메뉴의 "API 및 서비스">"사용자 인증 정보" 클릭
+
+
+메인의 OAuth 동의 화면 구성 클릭
+자신의 이메일 주소 선택
+사용자에게 표시되는 제품 이름에 프로젝트 이름과 동일하게 입력
+저장
+
+
+사용자 인증 정보 만들기>OAuth 클라이언트 ID 만들기
+"기타" 체크, 생성
+
+
+
+
+
+
+	리스트에서 방금 만든 클라이언트의 가장 우측의 JSON 다운로드
+	탐색기를 열어서 다운로드한 json파일을 credentials.json 으로 이름변경
+	/home/pi/MagicMirror/modules/MMM-AssistantMk2/ 폴더 안으로 이동 시킴
+
+
+	터미널에서
+	cd ~/MagicMirror/modules/MMM-AssistantMk2/
+	[엔터]
+	node auth_and_test.js
+	[엔터]
+
+
+잠시뒤에 나오는 인터넷 창에서 구글 아이디로 로그인
+사용 동의
+화면에 나오는 코드를 드래그 해서 우클릭 복사
+	터미널에 우클릭 붙여넣기
+	[엔터]
+터미널에
+Type your request
+나오면
+Hello
+입력해서 응답 잘오는지 확인하고
+	[Ctrl+C]
+로 종료
+
+
+	그상태에서 터미널에
+	mv token.json ./profiles/default.json
+	[엔터]
+
+
+	/// npm install --save-dev electron-rebuild
+	[엔터]
+	./node_modules/.bin/electron-rebuild
+	[엔터]
+
+waiting 20 minitue
+
+config file Down : 
+	https://drive.google.com/file/d/1m2Ji-KgKRikBIGcJ3n0H0QeSSwHnZ6ly/view
+
+config파일 설정
+탐색기를 열어서 config.json을 /home/pi/MagicMirror/config/ 에 덮어쓰기
+currentweather 설정
+날씨 지역설정
+
+
+그리고 config.json을 편집기로 실행해서 [Ctrl+F]로 찾기 도구를 써서 currentweather검색
+
+
+그 아래의 location항목의 따옴표 안을 자신의 지역으로 편집
+날씨 API설정
+https://openweathermap.org/ 에 접속
+
+
+상단의 Sign up으로 가입
+
+
+로그인 후 My Home에서 API keys으로 이동
+
+
+페이지에 있는 키를 복사
+
+
+날씨 지역설정에서 편집중이던 편집기로 와서
+
+
+appid 항목의 따옴표안에 붙여넣기
+weatherforecast 설정
+config.json을 편집기로 실행해서 [Ctrl+F]로 찾기 도구를 써서 weatherforecast 검색
+
+
+그 아래의 location항목의 따옴표 안을 자신의 지역으로 편집
+
+
+appid 부분을 currentweather 에서 쓴거랑 동일하게 지정
+
+844d47d65d5ec92282c1f32c510def47
+
+
+편집파일저장
+[Ctrl+S]로 저장
+
+
+MagicMirror작동확인
+	터미널을 열고
+	cd ~/MagicMirror/
+	[엔터]
+	npm start
+	[엔터]
+
+
+완성
+
+
+화면 계속 켜지게 하기
+	터미널을 열고
+	sudo apt-get --yes install xscreensaver
+
+
+진행이 끝나고 나면 재부팅
+
+
+메뉴>기본 설정>화면 보호기
+
+
+모드에서 Disable Screen Saver 선택
+MagicMirror자동 실행 설정 (최종 테스트후 마지막)
+	터미널에서
+	sudo npm install -g pm2
+	[엔터]
+	pm2 startup
+	[엔터]
+	sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi
+	[엔터]
+	pm2 start ~/MagicMirror/installers/pm2_MagicMirror.json
+	[엔터]
+	pm2 save
+	[엔터]
+________________
+MagicMirror자동 실행 멈추는 방법
+터미널에서 대소문자 구분하여서
+pm2 stop MagicMirror
+[엔터]
